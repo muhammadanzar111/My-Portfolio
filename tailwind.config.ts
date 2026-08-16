@@ -10,7 +10,7 @@ export default {
         surface: "#111113",
         glass: "rgba(255,255,255,0.04)",
         border: "rgba(255,255,255,0.08)",
-        accent: "#c9a24b", // muted gold — swap to taste
+        accent: "#e8e6e1", // off-white / silver
         muted: "#8a8a92",
       },
       fontFamily: {

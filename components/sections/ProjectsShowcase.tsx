@@ -16,21 +16,28 @@ type Project = {
 function ProjectCard({ project }: { project: Project }) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const rotateX = useSpring(useTransform(y, [-100, 100], [8, -8]), { stiffness: 150, damping: 20 });
-  const rotateY = useSpring(useTransform(x, [-100, 100], [-8, 8]), { stiffness: 150, damping: 20 });
+  const rotateX = useSpring(useTransform(y, [-100, 100], [14, -14]), { stiffness: 150, damping: 18 });
+  const rotateY = useSpring(useTransform(x, [-100, 100], [-14, 14]), { stiffness: 150, damping: 18 });
+  const scale = useSpring(1, { stiffness: 150, damping: 18 });
 
   return (
     <motion.div
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-10%" }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       onMouseMove={(e) => {
         const rect = e.currentTarget.getBoundingClientRect();
         x.set(e.clientX - rect.left - rect.width / 2);
         y.set(e.clientY - rect.top - rect.height / 2);
       }}
+      onMouseEnter={() => scale.set(1.03)}
       onMouseLeave={() => {
         x.set(0);
         y.set(0);
+        scale.set(1);
       }}
-      style={{ rotateX, rotateY, transformPerspective: 1000 }}
+      style={{ rotateX, rotateY, scale, transformPerspective: 1000 }}
       className="relative shrink-0 w-[80vw] md:w-[520px] glass-card rounded-3xl overflow-hidden"
     >
       {project.coverImage && (

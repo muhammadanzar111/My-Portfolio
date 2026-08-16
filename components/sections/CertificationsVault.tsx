@@ -20,9 +20,15 @@ type Certification = {
 export function CertificationsVault({ certifications }: { certifications: Certification[] }) {
   return (
     <section className="px-6 md:px-16 py-32">
-      <h2 className="font-display text-3xl md:text-5xl mb-12 tracking-tight">
+      <motion.h2
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        className="font-display text-3xl md:text-5xl mb-12 tracking-tight"
+      >
         Certifications
-      </h2>
+      </motion.h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {certifications.map((cert, i) => (
           <motion.a
@@ -30,11 +36,11 @@ export function CertificationsVault({ certifications }: { certifications: Certif
             href={cert.credentialUrl || "#"}
             target={cert.credentialUrl ? "_blank" : undefined}
             rel="noreferrer"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 50, scale: 0.94 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-10%" }}
-            transition={{ duration: 0.5, delay: i * 0.06 }}
-            whileHover={{ y: -4 }}
+            transition={{ duration: 0.7, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ y: -8, scale: 1.02 }}
             className="glass-card rounded-2xl p-6 flex flex-col justify-between min-h-[160px]"
           >
             <div>
