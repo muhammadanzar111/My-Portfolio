@@ -1,0 +1,39 @@
+"use client";
+
+import { motion } from "framer-motion";
+
+export function Hero({ headline, resumeUrl }: { headline?: string; resumeUrl?: string }) {
+  return (
+    <section className="min-h-screen flex flex-col justify-center px-6 md:px-16 relative">
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="font-display text-5xl md:text-8xl tracking-tight leading-[0.95]"
+      >
+        Your Name
+      </motion.h1>
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+        className="text-muted text-lg md:text-2xl mt-6 max-w-xl"
+      >
+        {headline || "UI/UX & Graphic Designer"}
+      </motion.p>
+      {resumeUrl && (
+        <motion.a
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          href={resumeUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-10 inline-block w-fit glass-card rounded-full px-6 py-3 text-sm hover:bg-white/10 transition-colors"
+        >
+          Download Résumé
+        </motion.a>
+      )}
+    </section>
+  );
+}
