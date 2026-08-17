@@ -13,6 +13,16 @@
   -webkit-backdrop-filter: blur(16px);
 }
 
+/* Lighter variant for repeated grid items (certifications, skills) —
+   no blur filter, since dozens of blurred elements tank scroll performance.
+   Visually similar at a glance, costs almost nothing to render. */
+.glass-card-flat {
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  content-visibility: auto;
+  contain-intrinsic-size: 160px;
+}
+
 /* subtle film-grain noise overlay for depth, avoids flat-black look */
 .grain::before {
   content: "";
@@ -21,6 +31,8 @@
   z-index: 1;
   pointer-events: none;
   opacity: 0.035;
+  will-change: transform;
+  transform: translateZ(0);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
