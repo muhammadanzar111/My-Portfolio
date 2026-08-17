@@ -34,63 +34,84 @@ export function Hero({ headline, resumeUrl }: { headline?: string; resumeUrl?: s
       </motion.nav>
 
       {/* Hero content */}
-      <div className="relative z-10 flex-1 flex flex-col justify-center px-6 md:px-16">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex items-center gap-2 mb-8 w-fit glass-card rounded-full pl-2 pr-4 py-1.5"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-60" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
-          </span>
-          <span className="text-xs text-muted tracking-wide">Open to internships & freelance</span>
-        </motion.div>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 60, scale: 0.96 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display text-6xl md:text-[9rem] tracking-tight leading-[0.9]"
-        >
-          Muhammad
-          <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-muted">
-            Anzar
-          </span>
-        </motion.h1>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-wrap gap-3 mt-8 max-w-2xl"
-        >
-          {roles.map((role, i) => (
-            <span
-              key={i}
-              className="glass-card rounded-full px-4 py-2 text-sm md:text-base text-muted"
-            >
-              {role}
-            </span>
-          ))}
-        </motion.div>
-
-        {resumeUrl && (
-          <motion.a
-            initial={{ opacity: 0, y: 20 }}
+      <div className="relative z-10 flex-1 grid md:grid-cols-[1.3fr_1fr] gap-12 items-center px-6 md:px-16">
+        <div>
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.55, duration: 0.6 }}
-            href={resumeUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-10 inline-flex items-center gap-2 w-fit rounded-full px-7 py-3.5 text-sm bg-white text-bg font-medium hover:bg-accent transition-colors"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="flex items-center gap-2 mb-8 w-fit glass-card rounded-full pl-2 pr-4 py-1.5"
           >
-            Download Résumé
-            <span aria-hidden>↓</span>
-          </motion.a>
-        )}
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-60" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
+            </span>
+            <span className="text-xs text-muted tracking-wide">Open to internships & freelance</span>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 60, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="font-display text-6xl md:text-8xl tracking-tight leading-[0.9]"
+          >
+            Muhammad
+            <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-muted">
+              Anzar
+            </span>
+          </motion.h1>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-wrap gap-3 mt-8 max-w-xl"
+          >
+            {roles.map((role, i) => (
+              <span
+                key={i}
+                className="glass-card rounded-full px-4 py-2 text-sm md:text-base text-muted"
+              >
+                {role}
+              </span>
+            ))}
+          </motion.div>
+
+          {resumeUrl && (
+            <motion.a
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.55, duration: 0.6 }}
+              href={resumeUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-10 inline-flex items-center gap-2 w-fit rounded-full px-7 py-3.5 text-sm bg-white text-bg font-medium hover:bg-accent transition-colors"
+            >
+              Download Résumé
+              <span aria-hidden>↓</span>
+            </motion.a>
+          )}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.92, y: 30 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="relative hidden md:block"
+        >
+          <motion.div
+            animate={{ y: [0, -14, 0] }}
+            transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+            className="glass-card rounded-3xl p-3 max-w-sm ml-auto"
+          >
+            <img
+              src="/images/portrait.jpg"
+              alt="Muhammad Anzar"
+              className="rounded-2xl w-full object-cover grayscale-[15%] contrast-[1.05]"
+            />
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Scroll cue */}

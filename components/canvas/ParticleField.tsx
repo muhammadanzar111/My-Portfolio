@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -32,8 +32,7 @@ function Particles({ count = 1800 }: { count?: number }) {
     pointsRef.current.rotation.z += (targetX - pointsRef.current.rotation.z) * 0.01;
   });
 
-  useMemo(() => {
-    if (typeof window === "undefined") return;
+  useEffect(() => {
     const handler = (e: PointerEvent) => {
       mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1;
       mouse.current.y = (e.clientY / window.innerHeight) * 2 - 1;
@@ -45,7 +44,12 @@ function Particles({ count = 1800 }: { count?: number }) {
   return (
     <points ref={pointsRef}>
       <bufferGeometry>
-        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+        <bufferAttribute
+          attach="attributes-position"
+          count={positions.length / 3}
+          array={positions}
+          itemSize={3}
+        />
       </bufferGeometry>
       <pointsMaterial
         size={0.028}
