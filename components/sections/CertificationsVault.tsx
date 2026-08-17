@@ -29,7 +29,9 @@ function logoUrlFor(issuer?: string): string | null {
   if (!issuer) return null;
   const domain = ISSUER_DOMAINS[issuer.trim().toLowerCase()];
   if (!domain) return null;
-  return `https://logo.clearbit.com/${domain}?size=64`;
+  // Google's favicon service — no API key required, stable, doesn't
+  // get deprecated (unlike Clearbit's now-defunct free Logo API).
+  return `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
 }
 
 function IssuerLogo({ issuer }: { issuer?: string }) {
