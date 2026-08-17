@@ -10,7 +10,7 @@ const ParticleField = dynamic(
 );
 
 export function Hero({ headline, resumeUrl }: { headline?: string; resumeUrl?: string }) {
-  const roles = (headline || "Data Science | AI Prompt Engineer | E-commerce Growth Strategist")
+  const roles = (headline || "Data Science | Artificial Intelligence | E-commerce Growth Strategist")
     .split("|")
     .map((r) => r.trim());
 
@@ -39,20 +39,7 @@ export function Hero({ headline, resumeUrl }: { headline?: string; resumeUrl?: s
       {/* Hero content */}
       <div className="relative z-10 flex-1 grid md:grid-cols-[1.3fr_1fr] gap-12 items-center px-6 md:px-16">
         <div>
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex items-center gap-2 mb-8 w-fit glass-card rounded-full pl-2 pr-4 py-1.5"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-60" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
-            </span>
-            <span className="text-xs text-muted tracking-wide">Open to internships & freelance</span>
-          </motion.div>
-
-          <motion.h1
+        <motion.h1
             initial={{ opacity: 0, y: 60, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}

@@ -21,7 +21,7 @@ export function Contact() {
         </p>
         <div className="flex flex-wrap gap-4">
           <a
-            href="mailto:you@example.com"
+            href="mailto:muhammadanzar111@gmail.com"
             className="rounded-full px-7 py-3.5 text-sm bg-white text-bg font-medium hover:bg-accent transition-colors"
           >
             Email me
