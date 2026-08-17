@@ -1,0 +1,335 @@
+{
+  "mutations": [
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Foundations of Data Science",
+        "issuer": "Google",
+        "issueDate": "2025-12-01",
+        "credentialUrl": "https://www.coursera.org/verify/002DOI52BKT2"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "ADBInstitute",
+        "issuer": "ADBInstitute",
+        "issueDate": "2025-10-01",
+        "credentialUrl": "https://elearning-adbi.org/certificate-verifier/?&code=141316-176-137-9669"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Introduction to AI",
+        "issuer": "Google",
+        "issueDate": "2026-02-01",
+        "credentialUrl": "https://www.coursera.org/account/accomplishments/records/9LHE0V6INSDC"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Maximize Productivity With AI Tools",
+        "issuer": "Google",
+        "issueDate": "2026-02-01",
+        "credentialUrl": "https://www.coursera.org/account/accomplishments/records/ZAHW0B3HJTAL"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Discover the Art of Prompting",
+        "issuer": "Google",
+        "issueDate": "2026-02-01",
+        "credentialUrl": "https://www.coursera.org/account/accomplishments/records/1H43VFAZ6OS8"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Use AI Responsibly",
+        "issuer": "Google",
+        "issueDate": "2026-02-01",
+        "credentialUrl": "https://www.coursera.org/account/accomplishments/records/YLHZWECS579W"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Functions and Conditional Statements",
+        "issuer": "Google",
+        "issueDate": "2026-02-01",
+        "credentialUrl": "https://www.coursera.org/account/accomplishments/records/96WEF1KHXPA3"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Hello, Python!",
+        "issuer": "Google",
+        "issueDate": "2025-12-01",
+        "credentialUrl": "https://www.coursera.org/account/accomplishments/records/BHVTXB3PVC5S"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Crash Course on Python",
+        "issuer": "Google",
+        "issueDate": "2025-12-01",
+        "credentialUrl": "https://www.coursera.org/account/accomplishments/records/D6ERU02PPTIA"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Stay Ahead of the AI Curve",
+        "issuer": "Google",
+        "issueDate": "2026-02-01",
+        "credentialUrl": "https://www.coursera.org/account/accomplishments/records/2OXT0DOSIY5Y"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Google AI Essentials",
+        "issuer": "Google",
+        "credentialUrl": "https://www.coursera.org/account/accomplishments/specialization/certificate/NBQ5P6GX8VWU"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Google AI Essentials V1",
+        "issuer": "Coursera",
+        "issueDate": "2026-02-01",
+        "credentialUrl": "https://www.credly.com/badges/399fccf2-c806-427b-bfbc-9a68d186c596/linked_in_profile"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Loops and Strings",
+        "issuer": "Google",
+        "issueDate": "2026-02-01",
+        "credentialUrl": "https://www.coursera.org/account/accomplishments/records/9BATB6CIH8L1"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Start Writing Prompts like a Pro",
+        "issuer": "Google",
+        "issueDate": "2026-03-01",
+        "credentialUrl": "https://www.coursera.org/account/accomplishments/records/2FKQYQW1CL2K"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Design Prompts for Everyday Work Tasks",
+        "issuer": "Google",
+        "issueDate": "2026-03-01",
+        "credentialUrl": "https://www.coursera.org/account/accomplishments/records/72NCTU5GZN39"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "E-COMMERCE MANAGEMENT",
+        "issuer": "Ministry of IT and Telecommunication Pakistan",
+        "issueDate": "2026-03-01",
+        "credentialUrl": "https://digiskills.pk/verify/"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "VIRTUAL ASSISTANT",
+        "issuer": "Ministry of IT and Telecommunication Pakistan",
+        "issueDate": "2026-03-01",
+        "credentialUrl": "https://digiskills.pk/verify"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Introduction to Data Science",
+        "issuer": "Cisco Networking Academy",
+        "issueDate": "2026-04-01"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Speed Up Data Analysis and Presentation Building",
+        "issuer": "Google",
+        "issueDate": "2026-06-01",
+        "credentialUrl": "https://www.coursera.org/account/accomplishments/records/1Y4QBSTGGVUW"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Microsoft Office Specialist Certification By NDA",
+        "issuer": "NDA",
+        "issueDate": "2025-06-01",
+        "credentialUrl": "https://portal.nda.com.pk/verify"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Use AI as a Creative or Expert Partner",
+        "issuer": "Google",
+        "issueDate": "2026-06-01",
+        "credentialUrl": "https://coursera.org/verify/JDY0L3M4YQ33"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Google Prompting Essentials Specialization",
+        "issuer": "Google",
+        "issueDate": "2026-06-01",
+        "credentialUrl": "https://coursera.org/verify/specialization/8TK071B8M0I3"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Programming for Data Science",
+        "issuer": "University of Leeds",
+        "issueDate": "2026-06-01",
+        "credentialUrl": "https://www.coursera.org/account/accomplishments/records/Y88O9OGMH22G"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Statistical Methods",
+        "issuer": "University of Leeds",
+        "issueDate": "2026-07-01",
+        "credentialUrl": "https://www.coursera.org/account/accomplishments/records/6MXFUPJTRKKN"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Digital Literacy",
+        "issuer": "DigiSkills.pk",
+        "issueDate": "2026-07-01",
+        "credentialUrl": "https://digiskills.pk/verify/"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Statistical Analysis of Data for Researchers",
+        "issuer": "Higher Education Commission, Pakistan",
+        "issueDate": "2026-07-01",
+        "credentialUrl": "https://www.coursera.org/account/accomplishments/records/BNHYP90AZTAX"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Communication and soft skills",
+        "issuer": "DigiSkills.pk",
+        "issueDate": "2026-07-01",
+        "credentialUrl": "https://digiskills.pk/verify"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Vibe Coding with Lovable: From Idea to App",
+        "issuer": "SkillsBooster | Digital Marketing Academy",
+        "issueDate": "2026-08-01",
+        "credentialUrl": "https://www.coursera.org/account/accomplishments/records/2U4YEWMLCX5P"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Generative AI Application Developer Certificate",
+        "issuer": "ULEFUSA UETians Lahore Endowment Foundation USA",
+        "issueDate": "2026-05-01"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "IMUN Training Session for Beginners - Phase:04",
+        "issuer": "International Model United Nations Association (IMUNA)",
+        "issueDate": "2026-08-01"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Vibe Coding with Cursor AI",
+        "issuer": "Scrimba",
+        "issueDate": "2026-08-01",
+        "credentialUrl": "https://www.coursera.org/account/accomplishments/records/VM1H9Y7P4QEK"
+      }
+    },
+    {
+      "create": {
+        "_type": "skill",
+        "name": "Data Science",
+        "order": 0
+      }
+    },
+    {
+      "create": {
+        "_type": "skill",
+        "name": "Python (Programming Language)",
+        "order": 1
+      }
+    },
+    {
+      "create": {
+        "_type": "skill",
+        "name": "SQL",
+        "order": 2
+      }
+    },
+    {
+      "create": {
+        "_type": "skill",
+        "name": "Prompt Engineering",
+        "order": 3
+      }
+    },
+    {
+      "create": {
+        "_type": "skill",
+        "name": "AI Essentials",
+        "order": 4
+      }
+    },
+    {
+      "create": {
+        "_type": "skill",
+        "name": "E-Commerce",
+        "order": 5
+      }
+    },
+    {
+      "create": {
+        "_type": "skill",
+        "name": "Statistics",
+        "order": 6
+      }
+    },
+    {
+      "create": {
+        "_type": "skill",
+        "name": "Object-Oriented Programming (OOP)",
+        "order": 7
+      }
+    }
+  ]
+}

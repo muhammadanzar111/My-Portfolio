@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 type Certification = {
   _id: string;
@@ -9,6 +10,42 @@ type Certification = {
   issueDate?: string;
   credentialUrl?: string;
 };
+
+// Maps known issuer names to their company domain, so we can pull a real
+// logo automatically via a public logo API — no manual upload needed,
+// works for every current and future certification with a recognized issuer.
+const ISSUER_DOMAINS: Record<string, string> = {
+  "google": "google.com",
+  "coursera": "coursera.org",
+  "cisco networking academy": "cisco.com",
+  "university of leeds": "leeds.ac.uk",
+  "digiskills.pk": "digiskills.pk",
+  "scrimba": "scrimba.com",
+  "higher education commission, pakistan": "hec.gov.pk",
+  "nda": "nda.com.pk",
+};
+
+function logoUrlFor(issuer?: string): string | null {
+  if (!issuer) return null;
+  const domain = ISSUER_DOMAINS[issuer.trim().toLowerCase()];
+  if (!domain) return null;
+  return `https://logo.clearbit.com/${domain}?size=64`;
+}
+
+function IssuerLogo({ issuer }: { issuer?: string }) {
+  const [failed, setFailed] = useState(false);
+  const src = logoUrlFor(issuer);
+  if (!src || failed) return null;
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={src}
+      alt=""
+      onError={() => setFailed(true)}
+      className="w-7 h-7 rounded-md bg-white/90 object-contain p-1 mb-3"
+    />
+  );
+}
 
 /**
  * Renders whatever certifications currently exist in Sanity.
@@ -44,6 +81,7 @@ export function CertificationsVault({ certifications }: { certifications: Certif
             className="glass-card-flat rounded-2xl p-6 flex flex-col justify-between min-h-[160px]"
           >
             <div>
+              <IssuerLogo issuer={cert.issuer} />
               <p className="text-sm text-muted mb-1">{cert.issuer}</p>
               <h3 className="text-lg font-medium leading-snug">{cert.name}</h3>
             </div>
