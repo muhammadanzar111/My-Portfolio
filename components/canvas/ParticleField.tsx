@@ -23,7 +23,7 @@ function Particles({ count = 900 }: { count?: number }) {
 
   useFrame((state, delta) => {
     if (!pointsRef.current) return;
-    pointsRef.current.rotation.y += delta * 0.02;
+    pointsRef.current.rotation.y += delta * 0.012;
 
     // gentle parallax toward pointer position
     const targetX = mouse.current.x * 0.3;

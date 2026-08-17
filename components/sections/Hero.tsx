@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { CanvasErrorBoundary } from "@/components/canvas/CanvasErrorBoundary";
 
 const ParticleField = dynamic(
@@ -91,14 +92,18 @@ export function Hero({ headline, resumeUrl }: { headline?: string; resumeUrl?: s
           className="relative hidden md:block"
         >
           <motion.div
-            animate={{ y: [0, -14, 0] }}
-            transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+            animate={{ y: [0, -10, 0] }}
+            transition={{ repeat: Infinity, duration: 7, ease: "easeInOut" }}
+            style={{ willChange: "transform", transform: "translateZ(0)" }}
             className="glass-card rounded-3xl p-3 max-w-sm ml-auto"
           >
-            <img
+            <Image
               src="/images/portrait.jpg"
               alt="Muhammad Anzar"
-              className="rounded-2xl w-full object-cover grayscale-[15%] contrast-[1.05]"
+              width={731}
+              height={1024}
+              priority
+              className="rounded-2xl w-full h-auto object-cover"
             />
           </motion.div>
         </motion.div>
