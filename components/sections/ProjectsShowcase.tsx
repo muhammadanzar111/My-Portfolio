@@ -71,10 +71,16 @@ function ProjectCard({ project }: { project: Project }) {
 
 export function ProjectsShowcase({ projects }: { projects: Project[] }) {
   return (
-    <section className="py-32">
-      <h2 className="font-display text-3xl md:text-5xl mb-12 px-6 md:px-16 tracking-tight">
+    <section id="work" className="py-32">
+      <motion.h2
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        className="font-display text-3xl md:text-5xl mb-12 px-6 md:px-16 tracking-tight"
+      >
         Selected Work
-      </h2>
+      </motion.h2>
       <div className="flex gap-6 overflow-x-auto px-6 md:px-16 pb-8 snap-x snap-mandatory">
         {projects.map((p) => (
           <div key={p._id} className="snap-center">

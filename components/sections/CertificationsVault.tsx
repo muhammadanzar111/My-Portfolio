@@ -19,7 +19,7 @@ type Certification = {
  */
 export function CertificationsVault({ certifications }: { certifications: Certification[] }) {
   return (
-    <section className="px-6 md:px-16 py-32">
+    <section id="certifications" className="px-6 md:px-16 py-32">
       <motion.h2
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
