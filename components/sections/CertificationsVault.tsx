@@ -39,7 +39,7 @@ export function CertificationsVault({ certifications }: { certifications: Certif
             initial={{ opacity: 0, y: 50, scale: 0.94 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-10%" }}
-            transition={{ duration: 0.7, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.7, delay: Math.min(i * 0.05, 0.6), ease: [0.16, 1, 0.3, 1] }}
             whileHover={{ y: -8, scale: 1.02 }}
             className="glass-card rounded-2xl p-6 flex flex-col justify-between min-h-[160px]"
           >

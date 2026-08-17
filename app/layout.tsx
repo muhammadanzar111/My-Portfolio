@@ -15,8 +15,8 @@ const bodyFont = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Your Name — Creative Developer",
-  description: "Design & creative development portfolio",
+  title: "Muhammad Anzar — Data Science & AI",
+  description: "Data Science, AI prompt engineering & e-commerce growth portfolio",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

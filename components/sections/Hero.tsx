@@ -11,7 +11,7 @@ export function Hero({ headline, resumeUrl }: { headline?: string; resumeUrl?: s
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         className="font-display text-5xl md:text-8xl tracking-tight leading-[0.95]"
       >
-        Your Name
+        Muhammad Anzar
       </motion.h1>
       <motion.p
         initial={{ opacity: 0, y: 40 }}
@@ -19,7 +19,7 @@ export function Hero({ headline, resumeUrl }: { headline?: string; resumeUrl?: s
         transition={{ duration: 0.9, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
         className="text-muted text-lg md:text-2xl mt-6 max-w-xl"
       >
-        {headline || "UI/UX & Graphic Designer"}
+        {headline || "Data Science | AI Prompt Engineer | E-commerce Growth Strategist"}
       </motion.p>
       {resumeUrl && (
         <motion.a
