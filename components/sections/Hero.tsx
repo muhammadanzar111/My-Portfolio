@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import { CanvasErrorBoundary } from "@/components/canvas/CanvasErrorBoundary";
 
 const ParticleField = dynamic(
   () => import("@/components/canvas/ParticleField").then((m) => m.ParticleField),
@@ -15,7 +16,9 @@ export function Hero({ headline, resumeUrl }: { headline?: string; resumeUrl?: s
 
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden">
-      <ParticleField />
+      <CanvasErrorBoundary>
+        <ParticleField />
+      </CanvasErrorBoundary>
       <div className="mesh-glow" />
 
       {/* Nav */}

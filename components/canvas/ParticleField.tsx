@@ -69,7 +69,14 @@ export function ParticleField() {
       <Canvas
         camera={{ position: [0, 0, 5], fov: 50 }}
         dpr={[1, 1.5]}
-        gl={{ antialias: true, alpha: true }}
+        gl={{ antialias: true, alpha: true, failIfMajorPerformanceCaveat: false }}
+        onCreated={({ gl }) => {
+          gl.domElement.addEventListener(
+            "webglcontextlost",
+            (e) => e.preventDefault(),
+            false
+          );
+        }}
       >
         <Particles />
       </Canvas>
