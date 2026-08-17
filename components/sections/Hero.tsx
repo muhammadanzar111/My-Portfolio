@@ -1,6 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
+
+const ParticleField = dynamic(
+  () => import("@/components/canvas/ParticleField").then((m) => m.ParticleField),
+  { ssr: false }
+);
 
 export function Hero({ headline, resumeUrl }: { headline?: string; resumeUrl?: string }) {
   const roles = (headline || "Data Science | AI Prompt Engineer | E-commerce Growth Strategist")
@@ -9,6 +15,7 @@ export function Hero({ headline, resumeUrl }: { headline?: string; resumeUrl?: s
 
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden">
+      <ParticleField />
       <div className="mesh-glow" />
 
       {/* Nav */}
