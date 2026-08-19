@@ -19,6 +19,12 @@
 .glass-card-flat {
   background: rgba(255, 255, 255, 0.045);
   border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Skip render work for off-screen grid items — only for uniformly-sized
+   cards like certification tiles, NOT for variable-height cards like
+   project cards, where a wrong intrinsic-size guess causes squishing. */
+.content-lazy {
   content-visibility: auto;
   contain-intrinsic-size: 160px;
 }

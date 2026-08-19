@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { CanvasErrorBoundary } from "@/components/canvas/CanvasErrorBoundary";
 
 const ParticleField = dynamic(
@@ -15,11 +16,31 @@ export function Hero({ headline, resumeUrl }: { headline?: string; resumeUrl?: s
     .split("|")
     .map((r) => r.trim());
 
+  const sectionRef = useRef<HTMLElement>(null);
+  const [showParticles, setShowParticles] = useState(true);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    // Only run the WebGL render loop while the Hero is actually visible —
+    // otherwise it keeps burning GPU/main-thread time on every scroll
+    // frame for the rest of the page, which is what was causing the
+    // lag lower down on the site.
+    const observer = new IntersectionObserver(
+      ([entry]) => setShowParticles(entry.isIntersecting),
+      { threshold: 0 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden">
-      <CanvasErrorBoundary>
-        <ParticleField />
-      </CanvasErrorBoundary>
+    <section ref={sectionRef} className="relative min-h-screen flex flex-col overflow-hidden">
+      {showParticles && (
+        <CanvasErrorBoundary>
+          <ParticleField />
+        </CanvasErrorBoundary>
+      )}
       <div className="mesh-glow" />
 
       {/* Nav */}

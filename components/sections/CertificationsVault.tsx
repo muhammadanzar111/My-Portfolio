@@ -80,7 +80,7 @@ export function CertificationsVault({ certifications }: { certifications: Certif
             viewport={{ once: true, margin: "-10%" }}
             transition={{ duration: 0.7, delay: Math.min(i * 0.05, 0.6), ease: [0.16, 1, 0.3, 1] }}
             whileHover={{ y: -8, scale: 1.02 }}
-            className="glass-card-flat rounded-2xl p-6 flex flex-col justify-between min-h-[160px]"
+            className="glass-card-flat content-lazy rounded-2xl p-6 flex flex-col justify-between min-h-[160px]"
           >
             <div>
               <IssuerLogo issuer={cert.issuer} />

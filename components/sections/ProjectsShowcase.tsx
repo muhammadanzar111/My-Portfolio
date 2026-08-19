@@ -38,7 +38,7 @@ function ProjectCard({ project }: { project: Project }) {
         scale.set(1);
       }}
       style={{ rotateX, rotateY, scale, transformPerspective: 1000 }}
-      className="relative shrink-0 w-[80vw] md:w-[520px] glass-card rounded-3xl overflow-hidden"
+      className="relative shrink-0 w-[80vw] md:w-[520px] glass-card-flat rounded-3xl overflow-hidden"
     >
       {project.coverImage && (
         // eslint-disable-next-line @next/next/no-img-element
@@ -54,7 +54,7 @@ function ProjectCard({ project }: { project: Project }) {
         <p className="text-sm text-muted mb-4 line-clamp-2">{project.description}</p>
         <div className="flex flex-wrap gap-2">
           {project.techSkills?.map((s) => (
-            <span key={s} className="text-xs px-3 py-1 rounded-full glass-card">
+            <span key={s} className="text-xs px-3 py-1 rounded-full glass-card-flat">
               {s}
             </span>
           ))}
