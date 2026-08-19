@@ -20,8 +20,8 @@ export default async function Home() {
     <main>
       <Hero headline={about?.headline} resumeUrl={about?.resumeUrl} />
       <About bio={about?.bio} education={about?.education} />
-      <ProjectsShowcase projects={projects || []} />
       <Skills skills={skills || []} />
+      <ProjectsShowcase projects={projects || []} />
       <CertificationsVault certifications={certifications || []} />
       <Contact />
     </main>

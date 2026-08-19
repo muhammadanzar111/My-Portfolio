@@ -41,11 +41,23 @@ export function About({ bio, education }: { bio?: string; education?: Education[
           >
             <p className="text-xs uppercase tracking-[0.2em] text-muted mb-4">Education</p>
             {education.map((ed, i) => (
-              <div key={i} className="glass-card-flat rounded-2xl p-5 mb-3">
-                <p className="font-medium">{ed.school}</p>
-                {ed.degree && <p className="text-sm text-muted mt-1">{ed.degree}</p>}
-                {ed.years && <p className="text-xs text-muted mt-1">{ed.years}</p>}
-              </div>
+              <motion.div
+                key={i}
+                animate={{ y: [0, -10, 0] }}
+                transition={{ repeat: Infinity, duration: 7, ease: "easeInOut", delay: i * 0.3 }}
+                style={{ willChange: "transform", transform: "translateZ(0)" }}
+                className="glass-card-flat rounded-2xl p-5 mb-3 flex items-center gap-4"
+              >
+                {ed.logoUrl && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={ed.logoUrl} alt="" className="w-10 h-10 object-contain rounded-md bg-white/90 p-1 shrink-0" />
+                )}
+                <div>
+                  <p className="font-medium">{ed.school}</p>
+                  {ed.degree && <p className="text-sm text-muted mt-1">{ed.degree}</p>}
+                  {ed.years && <p className="text-xs text-muted mt-1">{ed.years}</p>}
+                </div>
+              </motion.div>
             ))}
           </motion.div>
         )}
