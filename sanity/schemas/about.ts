@@ -11,7 +11,7 @@ export default defineType({
       { name: "school", type: "string" },
       { name: "degree", type: "string" },
       { name: "years", type: "string" },
-      { name: "logoUrl", title: "Logo URL", type: "url", description: "Direct link to the school's logo image" },
+      { name: "logoUrl", title: "Logo URL", type: "string", description: "Direct link to the school's logo image, or a relative path like /images/logos/gcuf.png" },
     ] }] }),
     defineField({ name: "resumeUrl", title: "Resume PDF URL", type: "url" }),
   ],

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-type Education = { school?: string; degree?: string; years?: string };
+type Education = { school?: string; degree?: string; years?: string; logoUrl?: string };
 
 export function About({ bio, education }: { bio?: string; education?: Education[] }) {
   if (!bio && (!education || education.length === 0)) return null;
