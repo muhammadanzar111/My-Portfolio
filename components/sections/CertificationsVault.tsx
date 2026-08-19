@@ -35,6 +35,8 @@ const ISSUER_DOMAINS: Record<string, string> = {
 const CUSTOM_LOGOS: Record<string, string> = {
   "skillsbooster | digital marketing academy": "/images/logos/skillsbooster.png",
   "skillsbooster": "/images/logos/skillsbooster.png",
+  "international model united nations association (imuna)": "/images/logos/imun.png",
+  "imuna": "/images/logos/imun.png",
 };
 
 function logoUrlFor(issuer?: string): string | null {
