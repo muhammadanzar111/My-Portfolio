@@ -83,7 +83,7 @@ export function Hero({ headline, resumeUrl }: { headline?: string; resumeUrl?: s
             {roles.map((role, i) => (
               <span
                 key={i}
-                className="glass-card rounded-full px-4 py-2 text-sm md:text-base text-muted"
+                className="glass-card-flat rounded-full px-4 py-2 text-sm md:text-base text-muted"
               >
                 {role}
               </span>
@@ -116,7 +116,7 @@ export function Hero({ headline, resumeUrl }: { headline?: string; resumeUrl?: s
             animate={{ y: [0, -10, 0] }}
             transition={{ repeat: Infinity, duration: 7, ease: "easeInOut" }}
             style={{ willChange: "transform", transform: "translateZ(0)" }}
-            className="glass-card rounded-3xl p-3 max-w-sm ml-auto"
+            className="glass-card-flat rounded-3xl p-3 max-w-sm ml-auto"
           >
             <Image
               src="/images/portrait.jpg"
