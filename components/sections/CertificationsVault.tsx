@@ -14,40 +14,43 @@ type Certification = {
 // Maps known issuer names to their company domain, so we can pull a real
 // logo automatically via a public logo API — no manual upload needed,
 // works for every current and future certification with a recognized issuer.
-const ISSUER_DOMAINS: Record<string, string> = {
-  "google": "google.com",
-  "coursera": "coursera.org",
-  "cisco networking academy": "cisco.com",
-  "university of leeds": "leeds.ac.uk",
-  "digiskills.pk": "digiskills.pk",
-  "scrimba": "scrimba.com",
-  "higher education commission, pakistan": "hec.gov.pk",
-  "nda": "nda.com.pk",
-  // These certs were issued via DigiSkills.pk under the Ministry of IT
-  // umbrella, so we point them at DigiSkills' favicon rather than leaving
-  // them blank.
-  "ministry of it and telecommunication pakistan": "digiskills.pk",
-};
+// Matching is substring-based (not exact), so small variations in how the
+// issuer name is typed in Studio ("DigiSkills.pk", "DigiSkills", "Digi
+// Skills") still resolve to the right logo instead of silently breaking.
+const ISSUER_DOMAINS: { match: string; domain: string }[] = [
+  { match: "google", domain: "google.com" },
+  { match: "coursera", domain: "coursera.org" },
+  { match: "cisco", domain: "cisco.com" },
+  { match: "university of leeds", domain: "leeds.ac.uk" },
+  { match: "digiskills", domain: "digiskills.pk" },
+  { match: "digi skills", domain: "digiskills.pk" },
+  { match: "scrimba", domain: "scrimba.com" },
+  { match: "higher education commission", domain: "hec.gov.pk" },
+  { match: "nda", domain: "nda.com.pk" },
+  // Ministry-issued certs were actually delivered via DigiSkills.pk —
+  // point them at DigiSkills' favicon rather than leaving them blank.
+  { match: "ministry of it", domain: "digiskills.pk" },
+];
 
 // Direct logo files for issuers where a favicon lookup doesn't work well
 // (e.g. no reliable public domain) — drop the file in public/images/logos
-// and reference it here.
-const CUSTOM_LOGOS: Record<string, string> = {
-  "skillsbooster | digital marketing academy": "/images/logos/skillsbooster.png",
-  "skillsbooster": "/images/logos/skillsbooster.png",
-  "international model united nations association (imuna)": "/images/logos/imun.png",
-  "imuna": "/images/logos/imun.png",
-};
+// and reference it here. Also substring-matched for the same reason.
+const CUSTOM_LOGOS: { match: string; src: string }[] = [
+  { match: "skillsbooster", src: "/images/logos/skillsbooster.png" },
+  { match: "imuna", src: "/images/logos/imun.png" },
+  { match: "imun", src: "/images/logos/imun.png" },
+];
 
 function logoUrlFor(issuer?: string): string | null {
   if (!issuer) return null;
   const key = issuer.trim().toLowerCase();
-  if (CUSTOM_LOGOS[key]) return CUSTOM_LOGOS[key];
-  const domain = ISSUER_DOMAINS[key];
-  if (!domain) return null;
+  const custom = CUSTOM_LOGOS.find((c) => key.includes(c.match));
+  if (custom) return custom.src;
+  const domainMatch = ISSUER_DOMAINS.find((d) => key.includes(d.match));
+  if (!domainMatch) return null;
   // Google's favicon service — no API key required, stable, doesn't
   // get deprecated (unlike Clearbit's now-defunct free Logo API).
-  return `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+  return `https://www.google.com/s2/favicons?domain=${domainMatch.domain}&sz=64`;
 }
 
 function IssuerLogo({ issuer }: { issuer?: string }) {
