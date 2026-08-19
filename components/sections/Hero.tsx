@@ -52,6 +52,7 @@ export function Hero({ headline, resumeUrl }: { headline?: string; resumeUrl?: s
       >
         <span className="font-display text-sm tracking-[0.2em] uppercase text-muted">M. Anzar</span>
         <div className="hidden md:flex items-center gap-8 text-sm text-muted">
+          <a href="#about" className="hover:text-white transition-colors">About</a>
           <a href="#work" className="hover:text-white transition-colors">Work</a>
           <a href="#certifications" className="hover:text-white transition-colors">Certifications</a>
           <a href="#contact" className="hover:text-white transition-colors">Contact</a>
