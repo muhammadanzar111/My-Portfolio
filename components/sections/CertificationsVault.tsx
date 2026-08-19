@@ -23,11 +23,25 @@ const ISSUER_DOMAINS: Record<string, string> = {
   "scrimba": "scrimba.com",
   "higher education commission, pakistan": "hec.gov.pk",
   "nda": "nda.com.pk",
+  // These certs were issued via DigiSkills.pk under the Ministry of IT
+  // umbrella, so we point them at DigiSkills' favicon rather than leaving
+  // them blank.
+  "ministry of it and telecommunication pakistan": "digiskills.pk",
+};
+
+// Direct logo files for issuers where a favicon lookup doesn't work well
+// (e.g. no reliable public domain) — drop the file in public/images/logos
+// and reference it here.
+const CUSTOM_LOGOS: Record<string, string> = {
+  "skillsbooster | digital marketing academy": "/images/logos/skillsbooster.png",
+  "skillsbooster": "/images/logos/skillsbooster.png",
 };
 
 function logoUrlFor(issuer?: string): string | null {
   if (!issuer) return null;
-  const domain = ISSUER_DOMAINS[issuer.trim().toLowerCase()];
+  const key = issuer.trim().toLowerCase();
+  if (CUSTOM_LOGOS[key]) return CUSTOM_LOGOS[key];
+  const domain = ISSUER_DOMAINS[key];
   if (!domain) return null;
   // Google's favicon service — no API key required, stable, doesn't
   // get deprecated (unlike Clearbit's now-defunct free Logo API).
