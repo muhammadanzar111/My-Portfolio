@@ -277,6 +277,58 @@
     },
     {
       "create": {
+        "_type": "certification",
+        "name": "Mastering Google Antigravity",
+        "issuer": "SkillsBooster",
+        "issueDate": "2026-09-01",
+        "credentialUrl": "https://www.coursera.org/account/accomplishments/verify/2MYEETLI79FK"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Vibe Coding with Claude Code",
+        "issuer": "Scrimba",
+        "issueDate": "2026-08-01",
+        "credentialUrl": "https://www.coursera.org/account/accomplishments/verify/RIO4IXXPJCVS"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "NYLP Ambassador Certificate",
+        "issuer": "National Youth Leadership Programme (NYLP)",
+        "issueDate": "2026-08-01"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "IMUN Training Session for Beginners - Phase:04",
+        "issuer": "International Model United Nations Association (IMUNA)",
+        "issueDate": "2026-08-01"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Vibe Coding with GitHub Copilot",
+        "issuer": "Scrimba",
+        "issueDate": "2026-08-01",
+        "credentialUrl": "https://www.coursera.org/account/accomplishments/verify/Z91I6EVXCCG6"
+      }
+    },
+    {
+      "create": {
+        "_type": "certification",
+        "name": "Vibe Coding with Cursor AI",
+        "issuer": "Scrimba",
+        "issueDate": "2026-08-01",
+        "credentialUrl": "https://www.coursera.org/account/accomplishments/verify/VM1H9Y7P4QEK"
+      }
+    },
+    {
+      "create": {
         "_type": "skill",
         "name": "Data Science",
         "order": 0

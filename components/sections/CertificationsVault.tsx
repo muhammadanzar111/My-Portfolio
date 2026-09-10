@@ -1,57 +1,30 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, useMemo } from "react";
+import { useState, useMemo, type KeyboardEvent } from "react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-
-type Certification = {
-  _id: string;
-  name: string;
-  issuer?: string;
-  issueDate?: string;
-  credentialUrl?: string;
-};
-
-const ISSUER_DOMAINS: { match: string; domain: string }[] = [
-  { match: "google", domain: "google.com" },
-  { match: "coursera", domain: "coursera.org" },
-  { match: "cisco", domain: "cisco.com" },
-  { match: "university of leeds", domain: "leeds.ac.uk" },
-  { match: "digiskills", domain: "digiskills.pk" },
-  { match: "digi skills", domain: "digiskills.pk" },
-  { match: "scrimba", domain: "scrimba.com" },
-  { match: "higher education commission", domain: "hec.gov.pk" },
-  { match: "nda", domain: "nda.com.pk" },
-  { match: "ministry of it", domain: "digiskills.pk" },
-];
-
-const CUSTOM_LOGOS: { match: string; src: string }[] = [
-  { match: "skillsbooster", src: "/images/logos/skillsbooster.png" },
-  { match: "imuna", src: "/images/logos/imun.png" },
-  { match: "imun", src: "/images/logos/imun.png" },
-];
-
-function logoUrlFor(issuer?: string): string | null {
-  if (!issuer) return null;
-  const key = issuer.trim().toLowerCase();
-  const custom = CUSTOM_LOGOS.find((c) => key.includes(c.match));
-  if (custom) return custom.src;
-  const domainMatch = ISSUER_DOMAINS.find((d) => key.includes(d.match));
-  if (!domainMatch) return null;
-  return `https://www.google.com/s2/favicons?domain=${domainMatch.domain}&sz=64`;
-}
+import {
+  type Certification,
+  logoUrlFor,
+  filterCertifications,
+  formatIssueDate,
+} from "@/lib/certifications";
 
 function FlipCard({ cert, index }: { cert: Certification; index: number }) {
   const [logoFailed, setLogoFailed] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
   const logoSrc = logoUrlFor(cert.issuer);
+  const formattedDate = formatIssueDate(cert.issueDate);
 
-  const formattedDate = cert.issueDate
-    ? new Date(cert.issueDate).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "short",
-      })
-    : null;
+  const toggleFlip = () => setIsFlipped((v) => !v);
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+      // Prevent the page from scrolling on Space.
+      e.preventDefault();
+      toggleFlip();
+    }
+  };
 
   return (
     <motion.div
@@ -63,11 +36,13 @@ function FlipCard({ cert, index }: { cert: Certification; index: number }) {
         delay: Math.min(index * 0.03, 0.4),
         ease: [0.22, 1, 0.36, 1],
       }}
-      onClick={() => setIsFlipped((v) => !v)}
+      onClick={toggleFlip}
+      onKeyDown={handleKeyDown}
       className="flip-card h-[175px] cursor-pointer focus-within:outline-none select-none"
       tabIndex={0}
       role="button"
-      aria-label={`${cert.name} — ${cert.issuer} (Tap to flip)`}
+      aria-pressed={isFlipped}
+      aria-label={`${cert.name} — ${cert.issuer ?? "Unknown issuer"} (Press Enter to flip)`}
     >
       <div
         className="flip-card-inner"
@@ -139,15 +114,12 @@ export function CertificationsVault({
 }) {
   const [query, setQuery] = useState("");
 
-  const filtered = useMemo(() => {
-    if (!query.trim()) return certifications;
-    const q = query.toLowerCase();
-    return certifications.filter(
-      (c) =>
-        c.name.toLowerCase().includes(q) ||
-        (c.issuer && c.issuer.toLowerCase().includes(q))
-    );
-  }, [certifications, query]);
+  const filtered = useMemo(
+    () => filterCertifications(certifications, query),
+    [certifications, query]
+  );
+
+  const hasAnyCertifications = certifications.length > 0;
 
   return (
     <section id="certifications" className="px-5 sm:px-8 md:px-16 py-20 md:py-28">
@@ -181,6 +153,7 @@ export function CertificationsVault({
               stroke="currentColor"
               strokeWidth="2"
               className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted pointer-events-none"
+              aria-hidden="true"
             >
               <circle cx="11" cy="11" r="8" />
               <path d="m21 21-4.35-4.35" />
@@ -190,10 +163,12 @@ export function CertificationsVault({
       </div>
 
       {/* Cert count summary */}
-      <p className="text-xs text-muted mb-6">
-        Showing {filtered.length} of {certifications.length} certifications
-        {query ? ` matching "${query}"` : ""}
-      </p>
+      {hasAnyCertifications && (
+        <p className="text-xs text-muted mb-6" role="status" aria-live="polite">
+          Showing {filtered.length} of {certifications.length} certifications
+          {query ? ` matching "${query}"` : ""}
+        </p>
+      )}
 
       {/* Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 sm:gap-4">
@@ -202,7 +177,9 @@ export function CertificationsVault({
         ))}
         {filtered.length === 0 && (
           <p className="col-span-full text-muted text-sm py-8 text-center glass-card-flat rounded-2xl">
-            No certifications match "{query}".
+            {hasAnyCertifications
+              ? `No certifications match "${query}".`
+              : "Certifications are on the way — check back soon."}
           </p>
         )}
       </div>
