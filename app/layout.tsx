@@ -16,7 +16,7 @@ const bodyFont = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://muhammadanzar.vercel.app"),
+  metadataBase: new URL("https://my-portfolio-team-anz.vercel.app"),
   title: "Muhammad Anzar — Data Science & AI",
   description:
     "Personal portfolio of Muhammad Anzar — Data Science, AI prompt engineering & e-commerce growth strategist. Browse projects, certifications, and get in touch.",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: "Muhammad Anzar — Data Science & AI Portfolio",
     description:
       "Explore projects, certifications, and skills of Muhammad Anzar — Data Scientist & AI specialist.",
-    url: "https://muhammadanzar.vercel.app",
+    url: "https://my-portfolio-team-anz.vercel.app",
     type: "website",
     images: [
       {
