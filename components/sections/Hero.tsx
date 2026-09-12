@@ -67,18 +67,33 @@ export function Hero({
 
   // Scroll-spy for nav active state
   useEffect(() => {
-    const onScroll = () => {
+    let rafId: number | null = null;
+
+    const update = () => {
       const sections = NAV_LINKS.map((l) => l.href.replace("#", ""));
       for (const id of [...sections].reverse()) {
         const el = document.getElementById(id);
         if (el && el.getBoundingClientRect().top <= 140) {
           setActiveSection(`#${id}`);
-          return;
+          break;
         }
       }
+      rafId = null;
     };
+
+    // Throttle to one check per animation frame — this previously called
+    // getBoundingClientRect() (a forced synchronous layout read) on up to
+    // 5 elements on every single native scroll event, which is real
+    // layout-thrashing on a fast scroll or trackpad.
+    const onScroll = () => {
+      if (rafId === null) rafId = requestAnimationFrame(update);
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   // Smooth typewriter loop

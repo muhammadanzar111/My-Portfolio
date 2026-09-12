@@ -13,6 +13,7 @@ export function ParticleField() {
     if (!ctx) return;
 
     let animationFrameId: number;
+    let isVisible = true;
     let width = (canvas.width = canvas.offsetWidth);
     let height = (canvas.height = canvas.offsetHeight);
 
@@ -57,8 +58,25 @@ export function ParticleField() {
 
     window.addEventListener("pointermove", handlePointerMove, { passive: true });
 
+    // Pause the render loop entirely once the canvas scrolls out of view —
+    // this ran unconditionally forever in the previous version, which was
+    // the exact pattern that caused real scroll lag lower down the page
+    // in earlier performance passes on this project.
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+      },
+      { threshold: 0 }
+    );
+    observer.observe(canvas);
+
     // Render loop
     const render = () => {
+      if (!isVisible) {
+        animationFrameId = requestAnimationFrame(render);
+        return;
+      }
+
       ctx.clearRect(0, 0, width, height);
 
       for (let i = 0; i < particles.length; i++) {
@@ -115,6 +133,7 @@ export function ParticleField() {
     return () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("pointermove", handlePointerMove);
+      observer.disconnect();
       cancelAnimationFrame(animationFrameId);
     };
   }, []);

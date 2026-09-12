@@ -195,10 +195,12 @@ export function Contact() {
                   onChange={handleChange}
                   placeholder="Your name"
                   autoComplete="name"
+                  aria-invalid={Boolean(errors.name)}
+                  aria-describedby={errors.name ? "contact-name-error" : undefined}
                   className={`form-input min-h-[46px] ${errors.name ? "error" : ""}`}
                 />
                 {errors.name && (
-                  <p className="text-xs text-red-400 mt-1">{errors.name}</p>
+                  <p id="contact-name-error" className="text-xs text-red-400 mt-1">{errors.name}</p>
                 )}
               </div>
 
@@ -218,10 +220,12 @@ export function Contact() {
                   onChange={handleChange}
                   placeholder="you@example.com"
                   autoComplete="email"
+                  aria-invalid={Boolean(errors.email)}
+                  aria-describedby={errors.email ? "contact-email-error" : undefined}
                   className={`form-input min-h-[46px] ${errors.email ? "error" : ""}`}
                 />
                 {errors.email && (
-                  <p className="text-xs text-red-400 mt-1">{errors.email}</p>
+                  <p id="contact-email-error" className="text-xs text-red-400 mt-1">{errors.email}</p>
                 )}
               </div>
 
@@ -240,10 +244,12 @@ export function Contact() {
                   value={values.message}
                   onChange={handleChange}
                   placeholder="Tell me about your project or opportunity…"
+                  aria-invalid={Boolean(errors.message)}
+                  aria-describedby={errors.message ? "contact-message-error" : undefined}
                   className={`form-input ${errors.message ? "error" : ""}`}
                 />
                 {errors.message && (
-                  <p className="text-xs text-red-400 mt-1">
+                  <p id="contact-message-error" className="text-xs text-red-400 mt-1">
                     {errors.message}
                   </p>
                 )}

@@ -8,15 +8,30 @@ export function ScrollProgress() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
+    let rafId: number | null = null;
+
+    const update = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const pct = docHeight > 0 ? scrollTop / docHeight : 0;
       setProgress(pct);
       setVisible(scrollTop > 300);
+      rafId = null;
     };
+
+    // Throttle to one update per animation frame instead of firing a
+    // React state update on every native scroll event (which can be
+    // dozens per second on a high-refresh trackpad) — real, if minor,
+    // render-thrashing that's cheap to avoid.
+    const onScroll = () => {
+      if (rafId === null) rafId = requestAnimationFrame(update);
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   const size = 48;

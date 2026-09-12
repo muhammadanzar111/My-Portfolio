@@ -21,6 +21,7 @@ interface ProjectModalProps {
 
 export function ProjectModal({ project, onClose }: ProjectModalProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
+  const previouslyFocused = useRef<HTMLElement | null>(null);
 
   // Close on Escape key
   useEffect(() => {
@@ -30,6 +31,43 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
+
+  // Trap Tab/Shift+Tab within the modal so keyboard users can't tab out
+  // to background content while it's open.
+  useEffect(() => {
+    if (!project) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Tab" || !dialogRef.current) return;
+      const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [project]);
+
+  // Move focus into the modal when it opens (was previously created but
+  // never used — meant keyboard users could tab straight through to
+  // background content behind the open dialog). Restore focus to
+  // whatever triggered the modal when it closes.
+  useEffect(() => {
+    if (project) {
+      previouslyFocused.current = document.activeElement as HTMLElement;
+      dialogRef.current?.focus();
+    } else {
+      previouslyFocused.current?.focus();
+    }
+  }, [project]);
 
   // Prevent background body scroll while open
   useEffect(() => {
@@ -69,6 +107,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             exit={{ opacity: 0, scale: 0.96, y: 8 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
             ref={dialogRef}
+            tabIndex={-1}
             role="dialog"
             aria-modal="true"
             aria-label={project.title}
