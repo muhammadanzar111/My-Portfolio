@@ -23,7 +23,6 @@ export const LOGO_RULES: LogoRule[] = [
   { match: "national youth leadership programme", type: "local", src: "/images/logos/imun.png" },
   { match: "nylp", type: "local", src: "/images/logos/imun.png" },
   { match: "google", type: "favicon", src: "google.com" },
-  { match: "coursera", type: "favicon", src: "coursera.org" },
   { match: "cisco", type: "favicon", src: "cisco.com" },
   { match: "university of leeds", type: "favicon", src: "leeds.ac.uk" },
   { match: "digi skills", type: "favicon", src: "digiskills.pk" },
@@ -32,6 +31,15 @@ export const LOGO_RULES: LogoRule[] = [
   { match: "higher education commission", type: "favicon", src: "hec.gov.pk" },
   { match: "nda", type: "favicon", src: "nda.com.pk" },
   { match: "ministry of it", type: "favicon", src: "digiskills.pk" },
+  // Specific, multi-word matches on purpose: a bare "aws" would also match
+  // unrelated names like "Lawson".
+  { match: "aws training", type: "favicon", src: "aws.amazon.com" },
+  { match: "amazon web services", type: "favicon", src: "aws.amazon.com" },
+  { match: "university of michigan", type: "favicon", src: "umich.edu" },
+  // Keep Coursera LAST: many certs are "offered through Coursera" by another
+  // organization, and the first matching rule wins — the actual issuer
+  // (HEC, Michigan, etc.) should take priority over the delivery platform.
+  { match: "coursera", type: "favicon", src: "coursera.org" },
 ];
 
 /**

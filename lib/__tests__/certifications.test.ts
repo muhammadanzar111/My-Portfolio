@@ -54,6 +54,40 @@ describe("logoUrlFor", () => {
     expect(logoUrlFor("ADBInstitute")).toBeNull();
     expect(logoUrlFor("Some Random Org")).toBeNull();
   });
+
+  it("resolves AWS Training & Certification to the AWS favicon", () => {
+    expect(logoUrlFor("AWS Training & Certification")).toBe(
+      "https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=64"
+    );
+    expect(logoUrlFor("Amazon Web Services")).toBe(
+      "https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=64"
+    );
+  });
+
+  it("does not false-match unrelated names that merely contain 'aws'", () => {
+    expect(logoUrlFor("Lawson Institute")).toBeNull();
+  });
+
+  it("resolves University of Michigan to the umich.edu favicon", () => {
+    expect(logoUrlFor("University of Michigan")).toBe(
+      "https://www.google.com/s2/favicons?domain=umich.edu&sz=64"
+    );
+  });
+
+  it("prefers the actual issuer over Coursera when both are named", () => {
+    expect(
+      logoUrlFor("Higher Education Commission, Pakistan (offered through Coursera)")
+    ).toBe("https://www.google.com/s2/favicons?domain=hec.gov.pk&sz=64");
+    expect(logoUrlFor("University of Michigan (offered through Coursera)")).toBe(
+      "https://www.google.com/s2/favicons?domain=umich.edu&sz=64"
+    );
+  });
+
+  it("still falls back to Coursera when Coursera is the issuer", () => {
+    expect(logoUrlFor("Coursera")).toBe(
+      "https://www.google.com/s2/favicons?domain=coursera.org&sz=64"
+    );
+  });
 });
 
 describe("formatIssueDate", () => {
