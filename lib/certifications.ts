@@ -36,6 +36,7 @@ export const LOGO_RULES: LogoRule[] = [
   { match: "aws training", type: "favicon", src: "aws.amazon.com" },
   { match: "amazon web services", type: "favicon", src: "aws.amazon.com" },
   { match: "university of michigan", type: "favicon", src: "umich.edu" },
+  { match: "outskill", type: "favicon", src: "outskill.com" },
   // Keep Coursera LAST: many certs are "offered through Coursera" by another
   // organization, and the first matching rule wins — the actual issuer
   // (HEC, Michigan, etc.) should take priority over the delivery platform.

@@ -74,6 +74,12 @@ describe("logoUrlFor", () => {
     );
   });
 
+  it("resolves Outskill to the outskill.com favicon", () => {
+    expect(logoUrlFor("Outskill")).toBe(
+      "https://www.google.com/s2/favicons?domain=outskill.com&sz=64"
+    );
+  });
+
   it("prefers the actual issuer over Coursera when both are named", () => {
     expect(
       logoUrlFor("Higher Education Commission, Pakistan (offered through Coursera)")
