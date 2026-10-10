@@ -74,6 +74,19 @@ describe("logoUrlFor", () => {
     );
   });
 
+  it("does not match a rule inside a longer word (Foundation vs 'nda')", () => {
+    expect(logoUrlFor("ULEFUSA UETians Lahore Endowment Foundation USA")).toBeNull();
+  });
+
+  it("still matches a rule at the edge of punctuation", () => {
+    expect(logoUrlFor("DigiSkills.pk")).toBe(
+      "https://www.google.com/s2/favicons?domain=digiskills.pk&sz=64"
+    );
+    expect(logoUrlFor("International Model United Nations Association (IMUNA)")).toBe(
+      "/images/logos/imun.png"
+    );
+  });
+
   it("resolves Outskill to the outskill.com favicon", () => {
     expect(logoUrlFor("Outskill")).toBe(
       "https://www.google.com/s2/favicons?domain=outskill.com&sz=64"

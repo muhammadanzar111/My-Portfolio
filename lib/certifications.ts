@@ -29,7 +29,6 @@ export const LOGO_RULES: LogoRule[] = [
   { match: "digiskills", type: "favicon", src: "digiskills.pk" },
   { match: "scrimba", type: "favicon", src: "scrimba.com" },
   { match: "higher education commission", type: "favicon", src: "hec.gov.pk" },
-  { match: "nda", type: "favicon", src: "nda.com.pk" },
   { match: "ministry of it", type: "favicon", src: "digiskills.pk" },
   // Specific, multi-word matches on purpose: a bare "aws" would also match
   // unrelated names like "Lawson".
@@ -44,6 +43,18 @@ export const LOGO_RULES: LogoRule[] = [
 ];
 
 /**
+ * True when `match` appears in `text` as whole word(s), not merely as a
+ * fragment of a longer word. Plain substring matching caused a real bug:
+ * the 3-letter rule "nda" matched inside "Fou-nda-tion", so an unrelated
+ * issuer (ULEFUSA ... Foundation USA) got the wrong organization's icon.
+ * Both arguments are expected to be lowercase.
+ */
+function matchesWholeWords(text: string, match: string): boolean {
+  const escaped = match.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return new RegExp(`(^|[^a-z0-9])${escaped}($|[^a-z0-9])`).test(text);
+}
+
+/**
  * Resolves a display-ready logo URL for a given issuer name, or null
  * if no rule matches (the UI should render without a logo in that case).
  */
@@ -52,7 +63,7 @@ export function logoUrlFor(issuer?: string | null): string | null {
   const key = issuer.trim().toLowerCase();
   if (!key) return null;
 
-  const rule = LOGO_RULES.find((r) => key.includes(r.match));
+  const rule = LOGO_RULES.find((r) => matchesWholeWords(key, r.match));
   if (!rule) return null;
 
   return rule.type === "local"
