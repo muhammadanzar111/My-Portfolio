@@ -22,6 +22,11 @@ export const LOGO_RULES: LogoRule[] = [
   { match: "imun", type: "local", src: "/images/logos/imun.png" },
   { match: "national youth leadership programme", type: "local", src: "/images/logos/imun.png" },
   { match: "nylp", type: "local", src: "/images/logos/imun.png" },
+  // Whole-word matching: "nda" matches the word NDA, never the letters inside "Foundation".
+  { match: "nda", type: "local", src: "/images/logos/nda.png" },
+  { match: "ulefusa", type: "local", src: "/images/logos/ulefusa.png" },
+  { match: "adbinstitute", type: "local", src: "/images/logos/adbi.png" },
+  { match: "asian development bank institute", type: "local", src: "/images/logos/adbi.png" },
   { match: "google", type: "favicon", src: "google.com" },
   { match: "cisco", type: "favicon", src: "cisco.com" },
   { match: "university of leeds", type: "favicon", src: "leeds.ac.uk" },

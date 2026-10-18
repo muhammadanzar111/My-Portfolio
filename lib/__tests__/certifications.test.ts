@@ -51,8 +51,8 @@ describe("logoUrlFor", () => {
   });
 
   it("returns null for unknown issuers", () => {
-    expect(logoUrlFor("ADBInstitute")).toBeNull();
     expect(logoUrlFor("Some Random Org")).toBeNull();
+    expect(logoUrlFor("Acme Learning Hub")).toBeNull();
   });
 
   it("resolves AWS Training & Certification to the AWS favicon", () => {
@@ -74,8 +74,18 @@ describe("logoUrlFor", () => {
     );
   });
 
-  it("does not match a rule inside a longer word (Foundation vs 'nda')", () => {
-    expect(logoUrlFor("ULEFUSA UETians Lahore Endowment Foundation USA")).toBeNull();
+  it("gives each of NDA, ULEFUSA and ADBInstitute its own logo", () => {
+    expect(logoUrlFor("NDA")).toBe("/images/logos/nda.png");
+    expect(logoUrlFor("ULEFUSA UETians Lahore Endowment Foundation USA")).toBe(
+      "/images/logos/ulefusa.png"
+    );
+    expect(logoUrlFor("ADBInstitute")).toBe("/images/logos/adbi.png");
+  });
+
+  it("does not match the NDA rule inside a longer word (Foundation)", () => {
+    // an unrelated issuer containing the letters "nda" must not get NDA's logo
+    expect(logoUrlFor("Hamilton Foundation")).toBeNull();
+    expect(logoUrlFor("Standard Institute")).toBeNull();
   });
 
   it("still matches a rule at the edge of punctuation", () => {
